@@ -1,6 +1,6 @@
-import axios from "axios"
 import React, { useState, useEffect } from "react"
-
+import axios from "axios"
+import { DateTime } from "luxon"
 import "./Calendar.css"
 
 const Calendar = () => {
@@ -18,6 +18,8 @@ const Calendar = () => {
         fetchDates()
     },[])
 
+    const daysOfWeek = ["Mon","Tue", "Wed", "Thu", "Fri","Sat", "Sun"]
+    let startNum = 10
     return (
         <div className="container">
             
@@ -25,13 +27,19 @@ const Calendar = () => {
             <section className="timezone">Your timezone: GMT +00:00</section>
 
             <div className = "day-container">
-                <div className="day-item">11th<br/> Mon</div>
-                <div className="day-item">12th <br/>Tue</div>
-                <div className="day-item">13th <br/>Wed</div>
-                <div className="day-item">14th <br/>Thur</div>
-                <div className="day-item">15th<br/> Fri</div>
-                <div className="day-item">16th <br/>Sat</div>
-                <div className="day-item">17th <br/>Sun</div>
+                {daysOfWeek.map((dayOfWeek) => {
+                    return (
+                    <div 
+                    key={dayOfWeek}
+                    className={`day-item ${dayOfWeek.toLowerCase()}`}
+                    >
+                        {`${startNum+=1}th`}
+                        <br/>
+                        {dayOfWeek}
+                    </div>
+                    )
+
+                })}                
             
             </div>
 
@@ -52,14 +60,37 @@ const Calendar = () => {
                 <button className="hour-item">21:00</button>            
             </div>
 
-            {dates.map((date, index) => (
-                <>
-                <div key={index}>date:{date.date}</div>
-                <div>avialibility: {date.availableSlots[0].startTime}</div>
-                </>
-            )
+            {dates.map((date) => {
+                
+            
+                // const dateRes = DateTime.fromFormat(date.date, "dd/MM/yyyy").day
+                // console.log("Date:",dateRes)
 
-            )}
+                const weekDay = DateTime.fromFormat(date.date, "dd/MM/yyyy").weekdayShort
+                // console.log("weekday:",weekDay)
+
+                // const startTime = date.availableSlots[0].startTime
+                // console.log("startTime:",startTime)
+
+                // const dateResAdd = DateTime.fromFormat(date.date, "dd/MM/yyyy").plus({ days: 4 }).day
+                // console.log("Added Date:",dateResAdd)
+
+                // const dateResMin = DateTime.fromFormat(date.date, "dd/MM/yyyy").plus({ days: -4 }).day
+                // console.log("Minused Date:",dateResMin)
+
+                const el = document.querySelector(`.${weekDay.toLowerCase()} `)
+                
+                console.log("el:", el.className + "after")
+
+                return (
+
+                    el.classList.add("after")
+                )
+        }
+
+            )
+            
+            }            
 
         </div>
     )
