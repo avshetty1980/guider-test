@@ -1,0 +1,35 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.timezone {
+  font-weight: 500;
+}
+
+.day-container,
+.hour-container {
+  display: flex;
+  justify-content: center;
+}
+
+.hour-container {
+  flex-wrap: wrap;
+}
+
+.day-item {
+  background-color: #f4f4f2;
+  font-size: 1rem;
+  color: #bbbfca;
+  padding: 1rem;
+  margin: 0.25rem;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.hour-item {
+  margin: 0.25rem;
+  background-color: white;
+  border-radius: 3px;
+  padding: 0.25rem;
+}
