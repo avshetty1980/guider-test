@@ -12,7 +12,9 @@ app.get('/availability', function (req, res) {
 
     
     // STEP 2 generate real data and convert to expected format
-    // const data = generateOffice365Schedule(startDate, endDate)
+    //const data = generateOffice365Schedule("11/01/2021", "17/01/2021")
+    //console.log("365 data",data)
+   
     return res.send(response);
 });
 

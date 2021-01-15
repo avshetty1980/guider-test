@@ -2,8 +2,12 @@ const { Settings, DateTime } = require("luxon");
 
 Settings.defaultZoneName = "utc";
 
-const diffDates = (startDate, endDate) =>
-  endDate.diff(startDate, ["days", "hours"]);
+const diffDates = (startDate, endDate) =>{
+  startDate = DateTime.fromFormat(startDate, "dd/MM/yyyy")
+  endDate = DateTime.fromFormat(endDate, "dd/MM/yyyy")
+
+  return endDate.diff(startDate, ["days", "hours"]);
+}
 
 exports.isSameDayMonthYear = (d1, d2) => {
   return (
