@@ -27,6 +27,7 @@
 .day-item {
   font-size: 1rem;
   background-color: var(--main-day-bg-color);
+  border: none;
   color: var(--main-day-text-color);
   padding: 1rem;
   margin: 0.25rem;
@@ -37,7 +38,6 @@
 .after {
   background-color: var(--main-day-active-bg-color);
   color: var(--main-day-active-text-color);
-  border-color: var(--main-day-active-bg-color);
 }
 
 .hour-item {
