@@ -72,8 +72,9 @@ const Calendar = () => {
 
             {dates.map((date) => {
                                 
-                //step1
-               const weekDay = DateTime.fromFormat(date.date, "dd/MM/yyyy").weekdayShort          
+                const weekDayObj = DateTime.fromFormat(date.date, "dd/MM/yyyy")
+
+               const weekDay = weekDayObj.weekdayShort          
                 
 
                 if(weekDay.toLowerCase() === showButtonId ) {
@@ -92,7 +93,7 @@ const Calendar = () => {
                         console.log("slots",objValues)
                         
                     })
-                    console.log("you clicked end", DateTime.fromFormat(date.date, "dd/MM/yyyy").day )
+                    console.log("you clicked end", weekDayObj.day)
                 }                
 
                 const el = document.querySelector(`.${weekDay.toLowerCase()} `)
