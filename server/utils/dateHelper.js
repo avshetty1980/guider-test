@@ -3,8 +3,8 @@ const { Settings, DateTime } = require("luxon");
 Settings.defaultZoneName = "utc";
 
 const diffDates = (startDate, endDate) =>{
-  startDate = DateTime.fromFormat(startDate, "dd/MM/yyyy")
-  endDate = DateTime.fromFormat(endDate, "dd/MM/yyyy")
+  // startDate = DateTime.fromFormat(startDate, "dd/MM/yyyy")
+  // endDate = DateTime.fromFormat(endDate, "dd/MM/yyyy")
 
   return endDate.diff(startDate, ["days", "hours"]);
 }
@@ -18,7 +18,11 @@ exports.isSameDayMonthYear = (d1, d2) => {
 exports.now = () => DateTime.utc();
 
 exports.durationInDays = (startDate, endDate) => {
-  const duration = diffDates(startDate, endDate);
+
+  // startDate = DateTime.fromFormat(startDate, "dd/MM/yyyy")
+  // endDate = DateTime.fromFormat(endDate, "dd/MM/yyyy")
+
+  const duration = diffDates(endDate, endDate);
 
   const days = Math.ceil(duration.as("days"));
 
@@ -30,6 +34,9 @@ exports.durationInDays = (startDate, endDate) => {
 };
 
 exports.durationInHours = (startDate, endDate) => {
+  // startDate = DateTime.fromFormat(startDate, "dd/MM/yyyy")
+  // endDate = DateTime.fromFormat(endDate, "dd/MM/yyyy")
+
   const duration = diffDates(startDate, endDate);
 
   return Math.ceil(duration.as("hours"));

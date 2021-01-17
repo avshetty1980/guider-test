@@ -3,7 +3,8 @@ var {
   durationInDays,
   durationInHours,
   formatDateToYearMonthDay,
-  fromISOString
+  fromISOString,
+  now
 } = require("./dateHelper");
 
 var r = require("ramda");
@@ -54,7 +55,12 @@ const generateEventsForDateString = dateString => [
 ];
 
 const generateEvents = (startDate, endDate) => {
+
+  startDate = startDate
+  endDate = endDate
+
   const days = durationInDays(startDate, endDate);
+  
   const daysVector = r.range(0, days + 1);
 
   const allEvents = r.reduce(
@@ -97,7 +103,8 @@ const generateAvailabilityView = (startDate, endDate, events) => {
   );
 };
 
-exports.generateOffice365Schedule = (startDate, endDate) => {
+exports.generateOffice365Schedule = (startDate, endDate) => {  
+
   const events = generateEvents(startDate, endDate);
   const availabilityView = generateAvailabilityView(startDate, endDate, events);
 

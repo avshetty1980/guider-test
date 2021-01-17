@@ -12,9 +12,11 @@ const Calendar = () => {
     useEffect(() => {
         
         const fetchDates = async () => {
-          const { data } = await axios.get("/availability")         
+          const { data } = await axios.get("/availability")
 
-          setDates(data)            
+          const newData = data.value[0].scheduleItems
+
+          setDates(newData)            
         }          
 
         fetchDates()
@@ -27,7 +29,6 @@ const Calendar = () => {
     const handleClick = (event) => {
         event.preventDefault()
         setShowButtonId(event.target.id) 
-        // console.log("ref", hourOfDayRefArray.current)
     }
 
     return (
@@ -70,11 +71,11 @@ const Calendar = () => {
                          
             </div>
 
-            {dates.map((date) => {
-                                
-                //step1
-               const weekDay = DateTime.fromFormat(date.date, "dd/MM/yyyy").weekdayShort          
+            {dates.map((date) => {                             
                 
+               
+                //const weekDay = DateTime.local(date.start.dateTime)
+                const weekDay = DateTime.fromISO(date.start.dateTime).weekdayShort
 
                 if(weekDay.toLowerCase() === showButtonId ) {
                     const slots = date.availableSlots.map(slot => {
