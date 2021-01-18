@@ -125,12 +125,12 @@ const Calendar = () => {
                             else 
                                 dateRef.current = null  
 
-                            return refs.push(dateRef.current)
+                            refs.push(dateRef.current)
                             
                            
                         })                      
                         
-                        console.log("slots",refs)
+                        // console.log("slots",refs)
                         refs.map((ref) => {
 
                             return ref.classList.add("after")
