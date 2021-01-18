@@ -61,20 +61,20 @@ const Calendar = () => {
 
             <div className = "hour-container">
                
-                <button className="hour-item eight" >8:00</button>
-                <button className="hour-item nine" >9:00</button>
-                <button className="hour-item ten" >10:00</button>
-                <button className="hour-item eleven" >11:00</button>
-                <button className="hour-item twelve" >12:00</button>
-                <button className="hour-item thirteen" >13:00</button>
-                <button className="hour-item fourteen" >14:00</button>
-                <button className="hour-item fifteen" >15:00</button>
-                <button className="hour-item sixteen" >16:00</button>
-                <button className="hour-item seveneen" >17:00</button>
-                <button className="hour-item eighteen" >18:00</button>
-                <button className="hour-item nineteen" >19:00</button>
-                <button className="hour-item twenty" >20:00</button>
-                <button className="hour-item twentyone" >21:00</button>
+                <button className="hour-item eight" disabled={true}>8:00</button>
+                <button className="hour-item nine" disabled={true}>9:00</button>
+                <button className="hour-item ten" disabled={true}>10:00</button>
+                <button className="hour-item eleven" disabled={true}>11:00</button>
+                <button className="hour-item twelve" disabled={true}>12:00</button>
+                <button className="hour-item thirteen" disabled={true}>13:00</button>
+                <button className="hour-item fourteen" disabled={true}>14:00</button>
+                <button className="hour-item fifteen" disabled={true}>15:00</button>
+                <button className="hour-item sixteen" disabled={true}>16:00</button>
+                <button className="hour-item seveneen" disabled={true}>17:00</button>
+                <button className="hour-item eighteen" disabled={true}>18:00</button>
+                <button className="hour-item nineteen" disabled={true}>19:00</button>
+                <button className="hour-item twenty" disabled={true}>20:00</button>
+                <button className="hour-item twentyone" disabled={true}>21:00</button>
                          
             </div>
 
@@ -87,8 +87,8 @@ const Calendar = () => {
                 const weekDay = weekDayObjStart.weekdayShort
                 let refs = []
 
-                // if(weekDay.toLowerCase() === showButtonId && date.status === "Tentative") {
-                if(weekDay.toLowerCase() === showButtonId) {
+                if(weekDay.toLowerCase() === showButtonId && date.status === "Tentative") {
+                // if(weekDay.toLowerCase() === showButtonId) {
 
                     const slotArr = [weekDayObjStart.hour, weekDayObjEnd.hour]
                      
@@ -127,15 +127,20 @@ const Calendar = () => {
 
                             refs.push(dateRef.current)
                             
+                            refs.map((ref) => {
+
+                            return ref.disabled = false
+                            
+                            }) 
                            
                         })                      
                         
                         // console.log("slots",refs)
-                        refs.map((ref) => {
+                        // refs.map((ref) => {
 
-                            return ref.classList.add("after")
+                        //     return ref.classList.add("after")
                             
-                            })                        
+                        //     })                        
                         
                 }                
 
