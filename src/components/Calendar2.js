@@ -7,7 +7,8 @@ const Calendar = () => {
 
     const [dates, setDates] = useState([])
     const [showButtonId, setShowButtonId] = useState(null)
-    const hourOfDayRef = useRef()
+
+    let dateRef = useRef([])
 
     useEffect(() => {
         
@@ -20,12 +21,12 @@ const Calendar = () => {
         }          
 
         fetchDates()
+
     },[])
 
     const daysOfWeek = ["Mon","Tue", "Wed", "Thu", "Fri","Sat", "Sun"]
-    const hoursOfDay = ["8:00", "9:00", "10:00", "11:00", "12.00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"] 
 
-    let startNum = 10
+    let startNum = 17
 
     const handleClick = (event) => {
         event.preventDefault()
@@ -39,6 +40,7 @@ const Calendar = () => {
 
             <div className = "day-container">
                 {daysOfWeek.map((dayOfWeek) => {
+                   
                     
                     return (
                         <button 
@@ -59,20 +61,20 @@ const Calendar = () => {
 
             <div className = "hour-container">
                
-                <button className="hour-item eight">8:00</button>
-                <button className="hour-item nine">9:00</button>
-                <button className="hour-item ten">10:00</button>
-                <button className="hour-item eleven">11:00</button>
-                <button className="hour-item twelve">12:00</button>
-                <button className="hour-item thirteen">13:00</button>
-                <button className="hour-item fourteen">14:00</button>
-                <button className="hour-item fifteen">15:00</button>
-                <button className="hour-item sixteen">16:00</button>
-                <button className="hour-item seveneen">17:00</button>
-                <button className="hour-item eighteen">18:00</button>
-                <button className="hour-item nineteen">19:00</button>
-                <button className="hour-item twenty">20:00</button>
-                <button className="hour-item twentyone">21:00</button>
+                <button className="hour-item eight" >8:00</button>
+                <button className="hour-item nine" >9:00</button>
+                <button className="hour-item ten" >10:00</button>
+                <button className="hour-item eleven" >11:00</button>
+                <button className="hour-item twelve" >12:00</button>
+                <button className="hour-item thirteen" >13:00</button>
+                <button className="hour-item fourteen" >14:00</button>
+                <button className="hour-item fifteen" >15:00</button>
+                <button className="hour-item sixteen" >16:00</button>
+                <button className="hour-item seveneen" >17:00</button>
+                <button className="hour-item eighteen" >18:00</button>
+                <button className="hour-item nineteen" >19:00</button>
+                <button className="hour-item twenty" >20:00</button>
+                <button className="hour-item twentyone" >21:00</button>
                          
             </div>
 
@@ -83,52 +85,58 @@ const Calendar = () => {
                 const weekDayObjStart = DateTime.fromISO(date.start.dateTime)
                 const weekDayObjEnd = DateTime.fromISO(date.end.dateTime)
                 const weekDay = weekDayObjStart.weekdayShort
+                let refs = []
 
-                if(weekDay.toLowerCase() === showButtonId && date.status === "Tentative") {
-                // if(weekDay.toLowerCase() === showButtonId) {
+                // if(weekDay.toLowerCase() === showButtonId && date.status === "Tentative") {
+                if(weekDay.toLowerCase() === showButtonId) {
 
                     const slotArr = [weekDayObjStart.hour, weekDayObjEnd.hour]
-                     console.log("slotArr",slotArr)
-                    const slots = slotArr.map(slot => {
-                         
-                            console.log("slot",slot)
-                            let hourOfDayEl
+                     
+                    slotArr.map(slot => {
                             
                             if(slot === 8)
-                                 hourOfDayEl = document.querySelector(`.eight`)
+                                 dateRef.current = document.querySelector(`.eight`)
                             else if (slot === 9)
-                                 hourOfDayEl = document.querySelector(".nine")
+                                 dateRef.current = document.querySelector(".nine")
                             else if (slot === 10)
-                                 hourOfDayEl = document.querySelector(".ten")
+                                 dateRef.current = document.querySelector(".ten")
                             else if (slot === 11)
-                                 hourOfDayEl = document.querySelector(".eleven")
+                                 dateRef.current = document.querySelector(".eleven")
                             else if (slot === 12)
-                                 hourOfDayEl = document.querySelector(".twelve")
+                                 dateRef.current = document.querySelector(".twelve")
                             else if (slot === 13)
-                                 hourOfDayEl = document.querySelector(".thirteen")
+                                 dateRef.current = document.querySelector(".thirteen")
                             else if (slot === 14)
-                                 hourOfDayEl = document.querySelector(".fourteen")
+                                 dateRef.current = document.querySelector(".fourteen")
                             else if (slot === 15)
-                                 hourOfDayEl = document.querySelector(".fifteen")
+                                 dateRef.current = document.querySelector(".fifteen")
                             else if (slot === 16)
-                                 hourOfDayEl = document.querySelector(".sixteen")
+                                 dateRef.current = document.querySelector(".sixteen")
                             else if (slot === 17)
-                                 hourOfDayEl = document.querySelector(".seventeen")
+                                 dateRef.current = document.querySelector(".seventeen")
                             else if (slot === 18)
-                                 hourOfDayEl = document.querySelector(".eighteen")
+                                 dateRef.current = document.querySelector(".eighteen")
                             else if (slot === 19)
-                                 hourOfDayEl = document.querySelector(".nineteen")
+                                 dateRef.current = document.querySelector(".nineteen")
                             else if (slot === 20)
-                                 hourOfDayEl = document.querySelector(".twenty")
+                                 dateRef.current = document.querySelector(".twenty")
                             else if (slot === 21)
-                                hourOfDayEl = document.querySelector(".twentyone")
+                                dateRef.current = document.querySelector(".twentyone")
                             else 
-                                hourOfDayEl = null   
-                            console.log(hourOfDayEl)
+                                dateRef.current = null  
+
+                            return refs.push(dateRef.current)
                             
-                         return  hourOfDayEl.classList.add("after")
                            
-                        })
+                        })                      
+                        
+                        console.log("slots",refs)
+                        refs.map((ref) => {
+
+                            return ref.classList.add("after")
+                            
+                            })                        
+                        
                 }                
 
                 const el = document.querySelector(`.${weekDay.toLowerCase()} `)
